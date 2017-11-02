@@ -7,6 +7,9 @@ Control a cart position by driving a dc motor and read its position with a two c
 
 Connection Scheme
 
-EncoderChannelA ----> D2    D11--->MotorShield DutyCycle
-Encode ChannelB ----> D3    D13--->MotorShield CC or CCW
+EncoderChannelA ----> D2    
+Encode ChannelB ----> D3  
+
+D11--->MotorShield DutyCycle
+D13--->MotorShield CC or CCW
 

@@ -50,7 +50,7 @@ void setup() {
 
   zeroTrim();
 
-  sp=0;   // initial set point
+  sp=0;   // initial set point, position value
 
 }
 
@@ -91,7 +91,10 @@ void changeB(){
 }
 
 void zeroTrim(){
-  
+/* this function drive motor backwards 
+ * until activates a limit switch (D5)
+ * then reset the actual Position (PV) to zero.
+ */
   while(!ZERO){
     
     digitalWrite(turnPin,HIGH);
@@ -109,6 +112,10 @@ void zeroTrim(){
 }
 
 void readSerial(){
+/* this function allows to 
+ * change Set Point and tuning parameters
+ * through serial port.
+ */
   if(Serial.available()>0){
       
       if(Serial.read()=='S')
@@ -129,7 +136,10 @@ void readSerial(){
 }
 
 void driveMotor(int mvTemp){
-  
+/* this function takes the output value 
+ * from PID and decides the turn CC or CCW
+ * and the duty cycle applied to dc motor.
+ */
   if(mvTemp>70){  
     digitalWrite(turnPin,LOW);
     analogWrite(motorPin,mvTemp);
@@ -148,6 +158,9 @@ void driveMotor(int mvTemp){
 }
 
 void sendSerial(){
+/* this function shows relevant values on
+ * serial monitor each 1000 loops of code.
+ */
   m++;
   if(m>=1000){
     Serial.print((int)sp);
